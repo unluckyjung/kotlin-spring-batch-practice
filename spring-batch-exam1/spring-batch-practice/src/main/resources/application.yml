@@ -4,6 +4,9 @@ spring:
     url: jdbc:mysql://localhost:13306/unluckyjung
     username: root
     password: asdf
+  batch:
+    jdbc:
+      initialize-schema: always
 
   jpa:
     hibernate:
