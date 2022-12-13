@@ -11,9 +11,9 @@ class MemberCreate(
 ) {
 
     @Transactional
-    fun create() {
+    fun create(memberPrefix: Long) {
         memberRepository.save(
-            Member("unluckyjung + ${(0..100).random()}")
+            Member("[$memberPrefix] unluckyjung")
         )
     }
 }

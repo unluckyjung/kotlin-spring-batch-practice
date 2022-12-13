@@ -1,6 +1,8 @@
 package com.example.springbatchpractice.scheduler
 
 import com.example.springbatchpractice.batch.SampleTaskletJobConfig
+import com.example.springbatchpractice.batch.SampleTaskletJobConfig.Companion.DATE
+import com.example.springbatchpractice.batch.SampleTaskletJobConfig.Companion.MEMBER_PREFIX
 import org.slf4j.LoggerFactory
 import org.springframework.batch.core.JobParameter
 import org.springframework.batch.core.JobParameters
@@ -18,7 +20,8 @@ class JobScheduler(
     @Scheduled(initialDelay = 1000, fixedDelay = 10000)
     fun runSimpleJob() {
         val arguments = mutableMapOf<String, JobParameter>()
-        arguments["date"] = JobParameter(ZonedDateTime.now().toString())
+        arguments[DATE] = JobParameter(ZonedDateTime.now().toString())
+        arguments[MEMBER_PREFIX] = JobParameter((1L..100L).random())
 
         try {
             jobLauncher.run(
